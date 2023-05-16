@@ -17,7 +17,6 @@ const Contato = ({ nome, phone, email }: Props) => {
       ) : (
         <S.Titulo>{nome}</S.Titulo>
       )}
-      {/* <S.Titulo>{nome}</S.Titulo> */}
       <S.Descricao>
         <li>
           <strong>Fone:</strong>
