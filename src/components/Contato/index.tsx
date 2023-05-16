@@ -17,16 +17,30 @@ const Contato = ({ nome, phone, email }: Props) => {
       ) : (
         <S.Titulo>{nome}</S.Titulo>
       )}
-      <S.Descricao>
-        <li>
-          <strong>Fone:</strong>
-          {phone}
-        </li>
-        <li>
-          <strong>E-mail:</strong>
-          {email}
-        </li>
-      </S.Descricao>
+      {estaEditando ? (
+        <>
+          <br />
+          <label htmlFor="phone">Fone:</label>
+          <input type="number" name="phone" id="phone" value={phone} />
+          <br />
+          <label htmlFor="email">E-mail:</label>
+          <input type="text" name="email" id="email" value={email} />
+          <br />
+        </>
+      ) : (
+        <>
+          <S.Descricao>
+            <li>
+              <strong>Fone:</strong>
+              {phone}
+            </li>
+            <li>
+              <strong>E-mail:</strong>
+              {email}
+            </li>
+          </S.Descricao>
+        </>
+      )}
       <S.BarraAcoes>
         {estaEditando ? (
           <>
