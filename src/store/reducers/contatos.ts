@@ -1,19 +1,59 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Contato from '../../models/Contato'
 
+type ContatosState = {
+  itens: Contato[]
+}
+
+const initialState: ContatosState = {
+  itens: [
+    {
+      nome: 'Jubileu da Sila',
+      phone: 12345678901,
+      email: 'masfuiasyeg@gmail.com',
+      id: 1
+    },
+    {
+      nome: 'Jango Mango',
+      phone: 12345678901,
+      email: 'jnagoheuhsi@gmail.com',
+      id: 2
+    },
+    {
+      nome: 'Marco Polo',
+      phone: 12345678901,
+      email: 'marcopolo@gmail.com',
+      id: 3
+    },
+    {
+      nome: 'Tonho Silveira',
+      phone: 12345678901,
+      email: 'masfuiasyeg@gmail.com',
+      id: 4
+    },
+    {
+      nome: 'Cody Jinks',
+      phone: 12345678901,
+      email: 'jnagoheuhsi@gmail.com',
+      id: 5
+    },
+    {
+      nome: 'Polo Marco',
+      phone: 12345678901,
+      email: 'marcopolo@gmail.com',
+      id: 6
+    }
+  ]
+}
+
 const ContatoSlice = createSlice({
   name: 'contatos',
-  initialState: [
-    new Contato('Jubileu da Sila', 12345678901, 'masfuiasyeg@gmail.com', 1),
-    new Contato('Jango Mango', 12345678901, 'jnagoheuhsi@gmail.com', 2),
-    new Contato('Marco Polo', 12345678901, 'marcopolo@gmail.com', 3),
-    new Contato('Jubileu da Sila', 12345678901, 'masfuiasyeg@gmail.com', 4),
-    new Contato('Jango Mango', 12345678901, 'jnagoheuhsi@gmail.com', 5),
-    new Contato('Marco Polo', 12345678901, 'marcopolo@gmail.com', 6)
-  ],
+  initialState,
   reducers: {
     remover: (state, action: PayloadAction<number>) => {
-      state = state.filter((contato) => contato.id !== action.payload)
+      state.itens = state.itens.filter(
+        (contato) => contato.id !== action.payload
+      )
     }
   }
 })
