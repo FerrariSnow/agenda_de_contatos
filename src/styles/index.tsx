@@ -17,4 +17,18 @@ export const Container = styled.div`
   flex-direction: column;
 `
 
+export const MainContainer = styled.main`
+  padding: 0 40px;
+  height: 80vh;
+  overflow-y: scroll;
+`
+
+export const Titulo = styled.h2`
+  display: block;
+  margin-top 40px;
+  margin-bottom 40px;
+  font-size: 18x;
+  font-weight: bold
+`
+
 export default EstiloGlobal
