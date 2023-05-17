@@ -14,10 +14,7 @@ export const Titulo = styled.h2`
   font-weight: bold;
 `
 
-export const Descricao = styled.ul`
-  color: #8b8b8b;
-  font-size: 14px;
-  line-height: 24px;
+export const Descricao = styled.div`
   font-family: 'Roboto Mono', monospace;
   display: block;
   width: 100%;
@@ -26,6 +23,19 @@ export const Descricao = styled.ul`
   resize: none;
   border: none;
   background-color: transparent;
+
+  label {
+    color: #8b8b8b;
+    margin-right: 8px;
+  }
+
+  input {
+    border: none;
+    font-size: 14px;
+    line-height: 24px;
+    display: inline-block;
+    width: 70%;
+  }
 `
 
 export const BarraAcoes = styled.div`

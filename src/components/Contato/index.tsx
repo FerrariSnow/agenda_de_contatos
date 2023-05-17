@@ -1,15 +1,37 @@
 import { useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import * as S from './styles'
-import { remover } from '../../store/reducers/contatos'
+import { remover, editar } from '../../store/reducers/contatos'
 import ContatoClass from '../../models/Contato'
 
 type Props = ContatoClass
 
-const Contato = ({ nome, phone, email, id }: Props) => {
+const Contato = ({
+  nome,
+  phone: phoneOriginal,
+  email: emailOriginal,
+  id
+}: Props) => {
   const dispatch = useDispatch()
   const [estaEditando, setEstaEditando] = useState(false)
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+
+  useEffect(() => {
+    if (phoneOriginal.length > 0) {
+      setPhone(phoneOriginal)
+    }
+    if (emailOriginal.length > 0) {
+      setEmail(emailOriginal)
+    }
+  }, [phoneOriginal, emailOriginal])
+
+  function cancelaEdicao() {
+    setEstaEditando(false)
+    setPhone(phoneOriginal)
+    setEmail(emailOriginal)
+  }
 
   return (
     <S.Card>
@@ -18,35 +40,49 @@ const Contato = ({ nome, phone, email, id }: Props) => {
       ) : (
         <S.Titulo>{nome}</S.Titulo>
       )}
-      {estaEditando ? (
-        <>
-          <br />
-          <label htmlFor="phone">Fone:</label>
-          <input type="number" name="phone" id="phone" value={phone} />
-          <br />
-          <label htmlFor="email">E-mail:</label>
-          <input type="text" name="email" id="email" value={email} />
-          <br />
-        </>
-      ) : (
-        <>
-          <S.Descricao>
-            <li>
-              <strong>Fone:</strong>
-              {phone}
-            </li>
-            <li>
-              <strong>E-mail:</strong>
-              {email}
-            </li>
-          </S.Descricao>
-        </>
-      )}
+      <S.Descricao>
+        <br />
+        <label htmlFor="phone">Fone:</label>
+        <input
+          disabled={!estaEditando}
+          type="number"
+          name="phone"
+          id="phone"
+          value={phone}
+          onChange={(evento) => setPhone(evento.target.value)}
+        />
+        <br />
+        <label htmlFor="email">E-mail:</label>
+        <input
+          disabled={!estaEditando}
+          type="text"
+          name="email"
+          id="email"
+          value={email}
+          onChange={(evento) => setEmail(evento.target.value)}
+        />
+        <br />
+      </S.Descricao>
+
       <S.BarraAcoes>
         {estaEditando ? (
           <>
-            <S.BotaoSalvar>Salvar</S.BotaoSalvar>
-            <S.BotaoCancelarRemover onClick={() => setEstaEditando(false)}>
+            <S.BotaoSalvar
+              onClick={() => {
+                dispatch(
+                  editar({
+                    nome,
+                    phone: phoneOriginal,
+                    email: emailOriginal,
+                    id
+                  })
+                )
+                setEstaEditando(false)
+              }}
+            >
+              Salvar
+            </S.BotaoSalvar>
+            <S.BotaoCancelarRemover onClick={cancelaEdicao}>
               Cancelar
             </S.BotaoCancelarRemover>
           </>
