@@ -16,4 +16,8 @@ export const BotaoVoltarEstilo = styled(Link)`
   left: 40px;
   font-size: 32px;
   text-decoration: none;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `

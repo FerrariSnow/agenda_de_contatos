@@ -9,7 +9,7 @@ import { BotaoSalvar } from '../../styles'
 type Props = ContatoClass
 
 const Contato = ({
-  nome,
+  nome: nomeOriginal,
   phone: phoneOriginal,
   email: emailOriginal,
   id
@@ -18,6 +18,7 @@ const Contato = ({
   const [estaEditando, setEstaEditando] = useState(false)
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
+  const [nome, setNome] = useState('')
 
   useEffect(() => {
     if (phoneOriginal.length > 0) {
@@ -26,7 +27,10 @@ const Contato = ({
     if (emailOriginal.length > 0) {
       setEmail(emailOriginal)
     }
-  }, [phoneOriginal, emailOriginal])
+    if (nomeOriginal.length > 0) {
+      setNome(nomeOriginal)
+    }
+  }, [phoneOriginal, emailOriginal, nomeOriginal])
 
   function cancelaEdicao() {
     setEstaEditando(false)
@@ -37,9 +41,16 @@ const Contato = ({
   return (
     <S.Card>
       {estaEditando ? (
-        <S.Titulo>Editando: {nome}</S.Titulo>
+        <S.Titulo>
+          Editando:
+          <S.NomeEditando
+            // disabled={!estaEditando}
+            value={nome}
+            onChange={(evento) => setNome(evento.target.value)}
+          ></S.NomeEditando>
+        </S.Titulo>
       ) : (
-        <S.Titulo>{nome}</S.Titulo>
+        <S.Titulo>{nomeOriginal}</S.Titulo>
       )}
       <S.Descricao>
         <br />

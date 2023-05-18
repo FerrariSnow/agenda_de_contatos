@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import _var from '../../styles/var'
+import { Campo } from '../../container/Formulario/styles'
 
 export const Card = styled.div`
   background-color: #fcfcfc;
@@ -56,4 +57,15 @@ export const Botao = styled.button`
 
 export const BotaoCancelarRemover = styled(Botao)`
   background-color: ${_var.vermelho};
+`
+
+export const NomeEditando = styled(Campo)`
+  display: inline-block;
+  width: auto;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: #000;
 `
