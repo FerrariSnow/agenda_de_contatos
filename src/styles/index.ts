@@ -1,4 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components'
+import { Botao } from '../components/Contato/styles'
+import _var from './var'
 
 const EstiloGlobal = createGlobalStyle`
 * {
@@ -29,6 +31,10 @@ export const Titulo = styled.h2`
   margin-bottom 40px;
   font-size: 18x;
   font-weight: bold
+`
+
+export const BotaoSalvar = styled(Botao)`
+  background-color: ${_var.verde};
 `
 
 export default EstiloGlobal

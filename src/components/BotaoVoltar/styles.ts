@@ -9,11 +9,11 @@ export const BotaoVoltarEstilo = styled(Link)`
   align-items: center;
   height: 64px;
   width: 64px;
-  background-color: #44bd32;
-  color: #000;
+  background-color: #666;
+  color: #fff;
   position: fixed;
   top: 40px;
   left: 40px;
-  font-size: 24px;
+  font-size: 32px;
   text-decoration: none;
 `
